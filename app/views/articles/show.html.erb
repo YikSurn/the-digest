@@ -9,11 +9,11 @@
     <div class="text-center">
       <img src="<%= @article.image_url %>">
     </div>
-    <small>Published On: <%= @article.pubDate.strftime("%e %b %Y")%></small>
+    <small>Published On: <%= @article.pub_date.strftime("%e %b %Y")%></small>
     <br>
     <small>Tags: <%= @article.tag_list %></small>
     <br>
-    <small>Source: <%= @article.source.name %></small>
+    <small>Source: <%= @article.feed.name %></small>
   </div>
   <% if @article.author %>
     <div class="panel-footer">By <%= @article.author %></div>

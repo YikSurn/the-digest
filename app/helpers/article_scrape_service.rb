@@ -8,26 +8,26 @@ require_relative '../models/importers/guardian_importer.rb'
 
 module ArticleScrapeService
 
-  # Update the articles with all the sources available in Source database
+  # Update the articles with all the feeds available in Feed database
   def self.scrape
     articles = []
-    sources = Source.all
-    sources.each do |source|
-      case source.name
+    feeds = Feed.all
+    feeds.each do |feed|
+      case feed.name
       when 'Sydney Morning Herald'
-        importer = SMHImporter.new(source.url, source)
+        importer = SMHImporter.new(feed.url, feed)
       when 'Herald Sun'
-        importer = HeraldSunImporter.new(source.url, source)
+        importer = HeraldSunImporter.new(feed.url, feed)
       when 'ABC'
-        importer = ABCImporter.new(source.url, source)
+        importer = ABCImporter.new(feed.url, feed)
       when 'The Age'
-        importer = AgeImporter.new(source.url, source)
+        importer = AgeImporter.new(feed.url, feed)
       when 'SBS'
-        importer = SBSImporter.new(source.url, source)
+        importer = SBSImporter.new(feed.url, feed)
       when 'New York Times'
-        importer = NYTimesImporter.new(source.url, source)
+        importer = NYTimesImporter.new(feed.url, feed)
       when 'The Guardian'
-        importer = GuardianImporter.new(source.url, source)
+        importer = GuardianImporter.new(feed.url, feed)
       end
       importer.scrape
       articles += importer.articles
