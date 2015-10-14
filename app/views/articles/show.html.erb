@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><a href="<%= @article.url %>"><%= @article.title %></a></h2>
+    <p><%= @article.summary %></p>
+    <div class="text-center">
+        <%= link_to 'Read More', @article.url, class: "btn btn-default" %>
+    </div>
+    <br>
+    <div class="text-center">
+      <img src="<%= @article.image_url %>">
+    </div>
+    <small>Published On: <%= @article.pubDate.strftime("%e %b %Y")%></small>
+    <br>
+    <small>Tags: <%= @article.tag_list %></small>
+    <br>
+    <small>Source: <%= @article.source.name %></small>
+  </div>
+  <% if @article.author %>
+    <div class="panel-footer">By <%= @article.author %></div>
+  <% end %>
+</div>

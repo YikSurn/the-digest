@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><a href="<%= article.url %>"><%= article.title %></a></h2>
+    <p><%= article.summary %></p>
+    <%= link_to 'Read More', article.url, class: "btn btn-default" %>
+    <div class="btn-group pull-right" role="group">
+        <%= link_to 'Details', article, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>
