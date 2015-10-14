@@ -21,24 +21,6 @@ User.create!({
 
 sources = Source.create([
     {
-      name: 'Tech Crunch',
-      url: 'http://feeds.feedburner.com/techcrunchIt?format=xml',
-      category: 'IT'
-    },
-    {
-      name: 'Tech Crunch',
-      url: 'http://feeds.feedburner.com/techcrunch/startups?format=xml',
-      category: 'Startups'
-    },
-    {
-      name: 'Tech in Asia',
-      url: 'https://www.techinasia.com/feed/'
-    },
-    {
-      name: 'Re/code',
-      url: 'http://recode.net/feed/',
-    },
-    {
       name: 'Sydney Morning Herald',
       url: 'http://www.smh.com.au/rssheadlines/technology-news/article/rss.xml',
       category: 'Technology News'
