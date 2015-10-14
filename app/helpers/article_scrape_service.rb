@@ -2,10 +2,10 @@ require_relative '../models/importers/smh_importer.rb'
 require_relative '../models/importers/heraldsun_importer.rb'
 require_relative '../models/importers/nytimes_importer.rb'
 
-class ArticleScrapeService
+module ArticleScrapeService
 
   # Update the articles with all the sources available in Source database
-  def scrape
+  def self.scrape
     articles = []
     sources = Source.all
     sources.each do |source|
