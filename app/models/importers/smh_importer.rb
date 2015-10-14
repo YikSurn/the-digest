@@ -14,11 +14,6 @@ class SMHImporter < ArticleImporter
     @source = source
   end
 
-  # Source name of class
-  def self.source_name
-    'Sydney Morning Herald'
-  end
-
   # Extract data from the RSS feed
   def scrape
     open(@url) do |rss|

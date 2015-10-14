@@ -5,8 +5,8 @@ require 'json'
 require 'net/http'
 require 'cgi'
 
-# Data importer for New York Times
-class NYTimesImporter < ArticleImporter
+# Data importer for The Guardian
+class GuardianImporter < ArticleImporter
 
   def initialize url, source
     super()

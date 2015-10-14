@@ -1,6 +1,10 @@
 require_relative '../models/importers/smh_importer.rb'
 require_relative '../models/importers/heraldsun_importer.rb'
+require_relative '../models/importers/abc_importer.rb'
+require_relative '../models/importers/theage_importer.rb'
+require_relative '../models/importers/sbs_importer.rb'
 require_relative '../models/importers/nytimes_importer.rb'
+require_relative '../models/importers/guardian_importer.rb'
 
 module ArticleScrapeService
 
@@ -14,8 +18,16 @@ module ArticleScrapeService
         importer = SMHImporter.new(source.url, source)
       when 'Herald Sun'
         importer = HeraldSunImporter.new(source.url, source)
+      when 'ABC'
+        importer = ABCImporter.new(source.url, source)
+      when 'The Age'
+        importer = AgeImporter.new(source.url, source)
+      when 'SBS'
+        importer = SBSImporter.new(source.url, source)
       when 'New York Times'
         importer = NYTimesImporter.new(source.url, source)
+      when 'The Guardian'
+        importer = GuardianImporter.new(source.url, source)
       end
       importer.scrape
       articles += importer.articles

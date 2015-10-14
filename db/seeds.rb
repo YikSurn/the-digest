@@ -22,26 +22,31 @@ User.create!({
 sources = Source.create([
     {
       name: 'Sydney Morning Herald',
-      url: 'http://www.smh.com.au/rssheadlines/technology-news/article/rss.xml',
-      category: 'Technology News'
-    },
-    {
-      name: 'Sydney Morning Herald',
-      url: 'http://www.smh.com.au/rssheadlines/digital-life-news/article/rss.xml',
-      category: 'Digital Life News'
-    },
-    {
-      name: 'Sydney Morning Herald',
-      url: 'http://feeds.smh.com.au/rssheadlines/itpro.xml',
-      category: 'IT Pro'
+      url: 'http://www.smh.com.au/rssheadlines/technology-news/article/rss.xml'
     },
     {
       name: 'Herald Sun',
-      url: 'http://feeds.news.com.au/heraldsun/rss/heraldsun_news_technology_2790.xml',
+      url: 'http://feeds.news.com.au/heraldsun/rss/heraldsun_news_technology_2790.xml'
+    },
+    {
+      name: 'ABC',
+      url: 'http://www.abc.net.au/news/feed/45910/rss.xml'
+    },
+    {
+      name: 'The Age',
+      url: 'http://www.theage.com.au/rssheadlines/technology-news/article/rss.xml'
+    },
+    {
+      name: 'SBS',
+      url: 'http://www.sbs.com.au/news/rss/news/science-technology.xml'
     },
     {
       name: 'New York Times',
       url: 'http://api.nytimes.com/svc/topstories/v1/technology.json?api-key=0b50822950befdc61b6e8bb000f15021:14:72922814'
+    },
+    {
+      name: 'The Guardian',
+      url: 'http://content.guardianapis.com/search?q=technology%20startup%20entrepreneur%20software&api-key=w7v3mpny242ubjrk9kgw54qx'
     }
   ])
 

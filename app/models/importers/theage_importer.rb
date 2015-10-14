@@ -5,8 +5,8 @@ require 'rss'
 require 'open-uri'
 require 'cgi'
 
-# Data importer for Herald Sun news
-class HeraldSunImporter < ArticleImporter
+# Data importer for The Age news
+class AgeImporter < ArticleImporter
 
   def initialize url, source
     super()
