@@ -1,24 +1,15 @@
-require_relative '../models/importers/tc_importer.rb'
-require_relative '../models/importers/tia_importer.rb'
-require_relative '../models/importers/recode_importer.rb'
 require_relative '../models/importers/smh_importer.rb'
 require_relative '../models/importers/heraldsun_importer.rb'
 require_relative '../models/importers/nytimes_importer.rb'
 
-module ArticlesHelper
+class ArticleScrapeService
 
   # Update the articles with all the sources available in Source database
-  def update_articles
+  def scrape
     articles = []
     sources = Source.all
     sources.each do |source|
       case source.name
-      when 'Tech Crunch'
-        importer = TCImporter.new(source.url, source)
-      when 'Tech in Asia'
-        importer = TiAImporter.new(source.url, source)
-      when 'Re/code'
-        importer = RecodeImporter.new(source.url, source)
       when 'Sydney Morning Herald'
         importer = SMHImporter.new(source.url, source)
       when 'Herald Sun'

@@ -1,7 +1,5 @@
 class ArticlesController < ApplicationController
 
-  include ArticlesHelper
-
   before_action :set_article, only: [:show]
   before_action :authenticate_user
 
@@ -21,12 +19,6 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-  end
-
-  def add_articles
-    update_articles
-    @articles = Article.order(pubDate: :desc)
-    redirect_to articles_path, notice: 'Articles successfully updated.'
   end
 
   private

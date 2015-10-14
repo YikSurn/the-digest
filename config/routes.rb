@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   delete 'sessions/logout', as: :logout
 
   get '/articles/interest' => 'articles#interests', as: :articles_interests
-  get '/articles/update' => 'articles#add_articles', as: :articles_scrape
+  get '/admin/scrape' => 'admin#scrape', as: :admin_scrape
   resources :articles, only: [:index, :show]
 
   resources :users
