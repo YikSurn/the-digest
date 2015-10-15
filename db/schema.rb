@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(version: 20150920124005) do
     t.string   "guid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "feeds_id"
+    t.integer  "sources_id"
   end
 
-  add_index "articles", ["feeds_id"], name: "index_articles_on_feeds_id"
+  add_index "articles", ["sources_id"], name: "index_articles_on_sources_id"
 
-  create_table "feeds", force: :cascade do |t|
+  create_table "sources", force: :cascade do |t|
     t.string   "name",       null: false
     t.string   "url",        null: false
     t.datetime "created_at", null: false
