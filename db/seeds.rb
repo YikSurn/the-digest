@@ -19,7 +19,7 @@ User.create!({
   password_confirmation: 'testtest',
 })
 
-sources = Source.create([
+Source.create!([
     {
       name: 'Sydney Morning Herald',
       url: 'http://www.smh.com.au/rssheadlines/technology-news/article/rss.xml'
