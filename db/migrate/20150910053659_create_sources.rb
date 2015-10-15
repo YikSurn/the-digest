@@ -1,6 +1,6 @@
-class CreateFeeds < ActiveRecord::Migration
+class CreateSources < ActiveRecord::Migration
   def change
-    create_table :feeds do |t|
+    create_table :sources do |t|
       t.string :name
       t.string :url
 
