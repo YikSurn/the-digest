@@ -20,8 +20,6 @@ class SMHImporter < ArticleImporter
       feed = RSS::Parser.parse(rss)
 
       feed.items.each do |item|
-        datetime = DateTime.strptime(item.pubDate.to_s, "%a, %d %b %Y %T %z")
-        date = Date.parse(datetime.to_s)
 
         # Remove the p tag and retrieve image url from the description if it exists
         p_tag = item.description[/<p>.*<\/p>/]
@@ -31,16 +29,6 @@ class SMHImporter < ArticleImporter
         else
           img_url = nil
         end
-
-        # Tags for article
-        tag_list = []
-        title_token = item.title.gsub(/[^\w\s]/, '').split()
-        title_token.each do |word|
-          # If starts with a capital letter, the word is assumed to be a noun
-          tag_list.push(word) unless (word[0].scan(/[A-Z]/).empty? or word.size == 1)
-        end
-        tag_list.push(self.class.source_name)
-        tag_list.uniq!
 
         # Sanitize HTML
         item.title = CGI.unescapeHTML(item.title)
@@ -52,9 +40,8 @@ class SMHImporter < ArticleImporter
           image_url: img_url,
           source: @source,
           url: item.link,
-          pubDate: item.pubDate,
+          pub_date: item.pubDate,
           guid: item.guid.content,
-          tag_list: tag_list
         ))
 
       end

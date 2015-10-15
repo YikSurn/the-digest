@@ -31,16 +31,6 @@ class NYTimesImporter < ArticleImporter
 
     article_list.each do |item|
 
-      # Add article tags
-      tag_list = []
-      tag_list.push(item['section'])
-      tag_list.push(item['subsection']) unless item['subsection'].empty?
-      tag_list += item['des_facet'] unless item['des_facet'].empty?
-      tag_list += item['org_facet'] unless item['org_facet'].empty?
-      tag_list += item['geo_facet'] unless item['geo_facet'].empty?
-      tag_list.push(self.class.source_name)
-      tag_list.uniq!
-
       item['byline'].slice!('By ')
 
       # Get image
@@ -66,8 +56,7 @@ class NYTimesImporter < ArticleImporter
         image_url: image_url,
         source: @source,
         url: item['url'],
-        pubDate: item['published_date'],
-        tag_list: tag_list
+        pub_date: item['published_date'],
       ))
     end
   end

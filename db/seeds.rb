@@ -34,7 +34,7 @@ Source.create!([
     },
     {
       name: 'The Age',
-      url: 'http://www.theage.com.au/rssheadlines/technology-news/article/rss.xml'
+      url: 'http://www.theage.com.au/rssheadlines/digital-life-news/article/rss.xml'
     },
     {
       name: 'SBS',

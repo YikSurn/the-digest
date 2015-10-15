@@ -17,32 +17,25 @@ class ABCImporter < ArticleImporter
   # Extract data from the RSS feed
   def scrape
     open(@url) do |rss|
-      feed = RSS::Parser.parse(rss)
+      feed = RSS::Parser.parse(rss, do_validate=false)
 
       feed.items.each do |item|
-        # Tags for article
-        tag_list = []
-        title_token = item.title.gsub(/[^\w\s]/, '').split()
-        title_token.each do |word|
-          # If starts with a capital letter, the word is assumed to be a noun
-          tag_list.push(word) unless (word[0].scan(/[A-Z]/).empty? or word.size == 1)
-        end
-        tag_list.push(self.class.source_name)
-        tag_list.uniq!
+        item.description = item.description.match(/<p>(?<description>.*)<\/p>/)[:description]
 
         # Sanitize HTML
         item.title = CGI.unescapeHTML(item.title)
         item.description = CGI.unescapeHTML(item.description)
 
+        item.author = CGI.unescapeHTML(item.dc_creator) if item.dc_creator
+
         @articles.push(Article.new(
           title: item.title,
+          author: item.author,
           summary: item.description,
-          image_url: item.enclosure.url,
           source: @source,
           url: item.link,
-          pubDate: item.pubDate.to_s,
+          pub_date: item.pubDate.to_s,
           guid: item.guid.content,
-          tag_list: tag_list
         ))
       end
     end

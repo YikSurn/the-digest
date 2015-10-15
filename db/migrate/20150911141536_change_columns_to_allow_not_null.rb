@@ -2,7 +2,6 @@ class ChangeColumnsToAllowNotNull < ActiveRecord::Migration
   def change
     change_column :articles, :title, :string, :null => false
     change_column :articles, :pub_date, :datetime, :null => false
-    change_column :articles, :summary, :string, :null => false
     change_column :articles, :url, :string, :null => false
 
     change_column :sources, :name, :string, :null => false
