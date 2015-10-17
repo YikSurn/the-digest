@@ -1,5 +1,7 @@
 class AdminController < ApplicationController
+
   include ArticleScrapeService
+  include NewsDigestService
 
   def scrape
     articles = ArticleScrapeService.scrape
@@ -19,6 +21,7 @@ class AdminController < ApplicationController
   end
 
   def email
+    news_digest
   end
 
 end

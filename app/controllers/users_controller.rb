@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :get_digest]
   before_action :authenticate_user, only: [:show]
   before_action :has_access?, only: [:edit, :update, :destroy]
+
+  include NewsDigestService
 
   # GET /users/1
   # GET /users/1.json
@@ -62,6 +64,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def get_digest
+    create_digest(@user)
+    # mandrill_send('asd')
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

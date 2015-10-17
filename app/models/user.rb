@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  # Has many articles sent to user
+  has_and_belongs_to_many :article
+
   # Able to tag interests
   acts_as_taggable_on :interests
 

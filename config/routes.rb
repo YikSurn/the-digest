@@ -8,11 +8,17 @@ Rails.application.routes.draw do
   post 'sessions/login', as: :signin
   delete 'sessions/logout', as: :logout
 
-  get '/articles/interest' => 'articles#interests', as: :articles_interests
+  # Administrator actions
   get '/admin/scrape' => 'admin#scrape', as: :admin_scrape
+  get '/admin/email' => 'admin#email', as: :admin_email
+
+  # Articles
+  get '/articles/interest' => 'articles#interests', as: :articles_interests
   resources :articles, only: [:index, :show]
 
+  # Users
   resources :users
+  get '/users/:id/digest' => 'users#get_digest', as: :user_digest
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
