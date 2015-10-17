@@ -33,7 +33,10 @@ module NewsDigestService
   end
 
   def digest_message articles
-
+    message = {
+      :subject => 'Your News Digest',
+      :text => articles
+    }
   end
 
   def mandrill_send m, user
