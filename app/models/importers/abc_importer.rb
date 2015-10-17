@@ -28,7 +28,7 @@ class ABCImporter < ArticleImporter
 
         item.author = CGI.unescapeHTML(item.dc_creator) if item.dc_creator
 
-        @articles.push(Article.new(
+        @articles.push({
           title: item.title,
           author: item.author,
           summary: item.description,
@@ -36,7 +36,7 @@ class ABCImporter < ArticleImporter
           url: item.link,
           pub_date: item.pubDate.to_s,
           guid: item.guid.content,
-        ))
+        })
       end
     end
   end

@@ -29,7 +29,7 @@ class HeraldSunImporter < ArticleImporter
         item.title = CGI.unescapeHTML(item.title)
         item.description = CGI.unescapeHTML(item.description)
 
-        @articles.push(Article.new(
+        @articles.push({
           title: item.title,
           summary: item.description,
           image_url: item.enclosure.url,
@@ -37,7 +37,7 @@ class HeraldSunImporter < ArticleImporter
           url: item.link,
           pub_date: item.pubDate.to_s,
           guid: item.guid.content,
-        ))
+        })
       end
     end
   end

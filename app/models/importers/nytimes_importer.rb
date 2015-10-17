@@ -49,7 +49,7 @@ class NYTimesImporter < ArticleImporter
       item['abstract'] = CGI.unescapeHTML(item['abstract'])
       item['byline'] = CGI.unescapeHTML(item['byline'])
 
-      @articles.push(Article.new(
+      @articles.push({
         author: item['byline'],
         title: item['title'],
         summary: item['abstract'],
@@ -57,7 +57,7 @@ class NYTimesImporter < ArticleImporter
         source: @source,
         url: item['url'],
         pub_date: item['published_date'],
-      ))
+      })
     end
   end
 

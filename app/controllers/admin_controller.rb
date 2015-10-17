@@ -6,6 +6,7 @@ class AdminController < ApplicationController
     # @articles = Article.order(pubDate: :desc)
 
     articles.each do |article|
+      article = Article.new(article)
       # Save article only if it doesn't already exist in database
       if article.guid
         article.save if Article.where(title: article.title, guid: article.guid).empty?

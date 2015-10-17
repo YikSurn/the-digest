@@ -34,12 +34,12 @@ class GuardianImporter < ArticleImporter
       # Sanitize HTML
       item['title'] = CGI.unescapeHTML(item['webTitle'])
 
-      @articles.push(Article.new(
+      @articles.push({
         title: item['title'],
         source: @source,
         url: item['webUrl'],
         pub_date: item['webPublicationDate'],
-      ))
+      })
     end
   end
 

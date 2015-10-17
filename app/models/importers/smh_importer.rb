@@ -34,7 +34,7 @@ class SMHImporter < ArticleImporter
         item.title = CGI.unescapeHTML(item.title)
         item.description = CGI.unescapeHTML(item.description)
 
-        @articles.push(Article.new(
+        @articles.push({
           title: item.title,
           summary: item.description,
           image_url: img_url,
@@ -42,7 +42,7 @@ class SMHImporter < ArticleImporter
           url: item.link,
           pub_date: item.pubDate,
           guid: item.guid.content,
-        ))
+        })
 
       end
 
