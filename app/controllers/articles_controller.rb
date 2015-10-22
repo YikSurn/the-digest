@@ -6,13 +6,13 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.order(pub_date: :desc)
+    @articles = Article.paginate(:page => params[:page]).order(pub_date: :desc)
   end
 
   # GET /articles/interests
   # GET /articles/interests.json
   def interests
-    @articles = Article.tagged_with(current_user.interest_list, :any => true).order(pub_date: :desc)
+    @articles = Article.tagged_with(current_user.interest_list, :any => true).paginate(:page => params[:page]).order(pub_date: :desc)
     render 'index'
   end
 

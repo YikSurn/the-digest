@@ -3,3 +3,11 @@
 <% @articles.each do |article| %>
   <%= render partial: 'index_article', locals: {article: article} %>
 <% end %>
+
+<div class="pagination">
+  <div>
+    <%= page_entries_info @articles %>
+  </div>
+  <br>
+  <%= will_paginate @articles, :container => false %>
+</div>
