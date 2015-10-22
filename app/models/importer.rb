@@ -13,4 +13,8 @@ class ArticleImporter
     @articles.uniq
   end
 
+  # Method to be implemented in the subclasses
+  def scrape
+  end
+
 end
