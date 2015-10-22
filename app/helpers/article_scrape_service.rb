@@ -37,7 +37,7 @@ module ArticleScrapeService
       articles += importer.articles
     end
 
-    articles.uniq!
+    articles.uniq! { |h| h[:title] }
 
     return articles
   end
