@@ -31,6 +31,11 @@
 </p>
 
 <% if is_current_user? @user %>
+  <% if !@user.subscribed %>
+    <%= button_to 'Subscribe to News Digest', [:toggle_subscribe, @user], :method => 'put' %>
+  <% else %>
+    <%= button_to 'Unsubscribe from News Digest', [:toggle_subscribe, @user], :method => 'put' %>
+  <% end %>
   <%= link_to 'Edit', edit_user_path(@user) %> |
   <%= link_to 'Back', articles_path %>
 <% end %>

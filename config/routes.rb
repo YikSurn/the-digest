@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   # Users
   resources :users
   get '/users/:id/digest' => 'users#get_digest', as: :user_digest
+  put '/users/:id/subscription' => 'users#toggle_subscribe', as: :toggle_subscribe_user
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

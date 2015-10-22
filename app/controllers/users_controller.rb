@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :get_digest]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :get_digest, :toggle_subscribe]
   before_action :authenticate_user, only: [:show]
-  before_action :has_access?, only: [:edit, :update, :destroy]
+  before_action :has_access?, only: [:edit, :update, :destroy, :get_digest, :toggle_subscribe]
 
   include NewsDigestService
 
@@ -64,6 +64,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def toggle_subscribe
+    @user.toggle!(:subscribed)
+    if @user.subscribed
+      redirect_to :back, notice: 'You have succesfully subscribed to the news digest.'
+    else
+      redirect_to :back, notice: 'You have now unsubscribed to the news digest.'
+    end
+  end
+
   def get_digest
     create_digest(@user)
     # mandrill_send('asd')
@@ -83,8 +92,8 @@ class UsersController < ApplicationController
     end
 
     def has_access?
-      respond_to do |format|
-        unless is_current_user? @user
+      unless is_current_user? @user
+        respond_to do |format|
           format.html { redirect_to login_path, notice: 'Unauthorized access!', status: 401 }
           format.json { render json: @user.errors, status: 401 }
         end
