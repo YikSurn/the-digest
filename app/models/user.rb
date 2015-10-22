@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     validates :last_name, format: { with: /[[:alpha:]]+/, message: "%{value} is not a valid last name" }, length: { maximum: 30 }
     validates :username, uniqueness: true
 
-  validates :password, length: { minimum: 6 }, :allow_blank => true
+  validates :password, length: { minimum: 8 }, :allow_blank => true
 
   # Find a user by username, then check the username is the same
   def self.authenticate username, password
