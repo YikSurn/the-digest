@@ -1,10 +1,10 @@
-require_relative '../models/importers/smh_importer.rb'
-require_relative '../models/importers/heraldsun_importer.rb'
-require_relative '../models/importers/abc_importer.rb'
-require_relative '../models/importers/theage_importer.rb'
-require_relative '../models/importers/sbs_importer.rb'
-require_relative '../models/importers/nytimes_importer.rb'
-require_relative '../models/importers/guardian_importer.rb'
+require_relative 'importers/smh_importer.rb'
+require_relative 'importers/heraldsun_importer.rb'
+require_relative 'importers/abc_importer.rb'
+require_relative 'importers/theage_importer.rb'
+require_relative 'importers/sbs_importer.rb'
+require_relative 'importers/nytimes_importer.rb'
+require_relative 'importers/guardian_importer.rb'
 
 module ArticleScrapeService
 

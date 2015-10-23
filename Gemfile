@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 # Handle the environment variables
@@ -31,6 +30,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use acts as taggable on
 gem 'acts-as-taggable-on', '~> 3.4'
+# Tagging
+gem 'open_calais'
+gem 'alchemy-api-rb'
+gem 'indico'
+gem 'engtagger'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

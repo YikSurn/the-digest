@@ -10,7 +10,7 @@ User.delete_all
 Source.delete_all
 Article.delete_all
 
-User.create!({
+User.create({
   first_name: 'John',
   last_name: 'Doe',
   email: 'john@doe.com',
@@ -19,7 +19,7 @@ User.create!({
   password_confirmation: 'testtest',
 })
 
-Source.create!([
+Source.create([
     {
       name: 'Sydney Morning Herald',
       url: 'http://www.smh.com.au/rssheadlines/technology-news/article/rss.xml'
