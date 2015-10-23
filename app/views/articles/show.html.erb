@@ -15,7 +15,7 @@
     <br>
     <small>Source: <%= @article.source.name %></small>
   </div>
-  <% if @article.author %>
-    <div class="panel-footer">By <%= @article.author %></div>
+  <% unless @article.author.nil? %>
+    <div class="panel-footer text-right">By <%= @article.author %></div>
   <% end %>
 </div>

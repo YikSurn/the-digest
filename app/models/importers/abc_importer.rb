@@ -27,6 +27,7 @@ class ABCImporter < ArticleImporter
         item.description = CGI.unescapeHTML(item.description)
 
         item.author = CGI.unescapeHTML(item.dc_creator) if item.dc_creator
+        item.author = nil if item.author.nil? or item.author.empty?
 
         @articles.push({
           title: item.title,

@@ -48,6 +48,7 @@ class NYTimesImporter < ArticleImporter
       item['title'] = CGI.unescapeHTML(item['title'])
       item['abstract'] = CGI.unescapeHTML(item['abstract'])
       item['byline'] = CGI.unescapeHTML(item['byline'])
+      item['byline'] = nil if item['byline'].nil? or item['byline'].empty?
 
       @articles.push({
         author: item['byline'],
