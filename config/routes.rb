@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   # Articles
   get '/articles/interest' => 'articles#interests', as: :articles_interests
+  get '/articles/search' => 'articles#search', as: :articles_search
   resources :articles, only: [:index, :show]
 
   # Users

@@ -8,17 +8,18 @@ class AdminController < ApplicationController
     articles = ArticleScrapeService.scrape
 
     # Tag and save articles only if it doesn't already exist in database
+    new_articles = []
     articles.each do |article|
       if article[:guid]
-        articles.delete(article) if Article.where(title: article[:title], guid: article[:guid]).empty?
+        new_articles << article if Article.where(title: article[:title], guid: article[:guid]).empty?
       elsif Article.where(url: article[:url]).empty?
-        articles.delete(article)
+        new_articles << article
       end
     end
 
-    articles = ArticleTagService.tag(articles)
+    new_articles = ArticleTagService.tag(new_articles)
 
-    articles.each { |a| Article.create(a) }
+    new_articles.each { |a| Article.create(a) }
 
     redirect_to articles_path, notice: 'Articles successfully updated.'
   end

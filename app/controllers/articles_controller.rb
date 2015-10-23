@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
 
+  include SearchService
+
   before_action :set_article, only: [:show]
   before_action :authenticate_user
 
@@ -19,6 +21,12 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+  end
+
+  def search
+    keywords = params[:keywords].split()
+    @articles = SearchService.search(keywords).paginate(page: params[:page])
+    render 'index'
   end
 
   private

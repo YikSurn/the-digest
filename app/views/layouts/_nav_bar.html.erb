@@ -24,6 +24,14 @@
       <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
+          <li>
+            <%= form_tag articles_search_path, :method=>'get', :class => 'navbar-form', :role => 'search' do %>
+              <div class="form-group">
+                <%= text_field_tag :keywords, params[:keywords], placeholder: 'Search for articles', type: :search, class: 'form-control' %>
+              </div>
+              <%= submit_tag "Search", class: 'btn btn-default'%>
+            <% end %>
+          </li>
           <li><%= link_to "My Profile", user_path(current_user) %></li>
           <li><%= link_to "Log Out", logout_path, method: :delete %></li>
         <% else %>
