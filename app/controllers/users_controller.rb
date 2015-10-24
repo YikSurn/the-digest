@@ -74,8 +74,7 @@ class UsersController < ApplicationController
   end
 
   def get_digest
-    create_digest(@user)
-    # mandrill_send('asd')
+    NewsDigestService.create_digest(@user)
   end
 
   private

@@ -25,7 +25,7 @@ class AdminController < ApplicationController
   end
 
   def email
-    news_digest
+    NewsDigestService.news_digest
   end
 
 end
