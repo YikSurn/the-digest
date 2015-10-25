@@ -8,7 +8,7 @@ module NewsDigestService
   def self.create_digest(user)
     articles = self.compile_articles(user)
     message = articles.empty? ? self.alert_message(user) : self.digest_message(user, articles)
-    self.mandrill_send(user, message)
+    self.send_digest(user, message)
   end
 
   # Sends news digest to all subscribed users
@@ -64,7 +64,7 @@ module NewsDigestService
   end
 
   # Sends the news digest to the user
-  def self.mandrill_send(user, message_txt)
+  def self.send_digest(user, message_txt)
     m = Mandrill::API.new
     message = {
       from_name: 'TheDigest',
