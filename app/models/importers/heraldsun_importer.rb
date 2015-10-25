@@ -7,8 +7,7 @@ require 'cgi'
 
 # Data importer for Herald Sun news
 class HeraldSunImporter < ArticleImporter
-
-  def initialize url, source
+  def initialize(url, source)
     super()
     @url = url
     @source = source
@@ -20,26 +19,24 @@ class HeraldSunImporter < ArticleImporter
       feed = RSS::Parser.parse(rss)
 
       feed.items.each do |item|
-        element_tag = item.description[/<[a-z]*>.*<\/[a-z]*>/]
-        if element_tag
-          item.description.slice! element_tag
-        end
+        element_tag = item.description[%r{<[a-z]*>.*</[a-z]*>}]
+
+        item.description.slice! element_tag if element_tag
 
         # Sanitize HTML
         item.title = CGI.unescapeHTML(item.title)
         item.description = CGI.unescapeHTML(item.description)
 
-        @articles.push({
+        @articles.push(
           title: item.title,
           summary: item.description,
           image_url: item.enclosure.url,
           source: @source,
           url: item.link,
           pub_date: item.pubDate.to_s,
-          guid: item.guid.content,
-        })
+          guid: item.guid.content
+        )
       end
     end
   end
-
 end

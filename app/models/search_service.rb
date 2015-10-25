@@ -3,15 +3,15 @@ TITLE_WEIGHT = 3
 SUMMARY_WEIGHT = 2
 SOURCE_NAME_WEIGHT = 1
 
+# Module to search articles based on keywords provided
 module SearchService
-
-  def self.search keywords
-    keywords.each { |k| k.downcase! }
+  # Main search function
+  def self.search(keywords)
+    keywords.each(&:downcase!)
 
     all_articles = Article.all.order(pub_date: :desc)
 
-    # weights = Hash.new { |hash, key| hash[key] = Array.new }
-    weights = Hash.new
+    weights = {}
 
     # Get articles that match to the keywords
     all_articles.each do |article|
@@ -22,22 +22,25 @@ module SearchService
 
     weights.sort_by { |k, v| [v, k.pub_date] }.reverse.to_h
 
-    return weights.keys
+    weights.keys
   end
 
-  def self.article_match? article, keywords
-    match_arg = [article.tag_list, article.title.downcase, article.source.name.downcase]
+  # Checks if keywords match the article
+  def self.article_match?(article, keywords)
+    match_arg = [article.tag_list, article.title.downcase,
+                 article.source.name.downcase]
     match_arg << article.summary.downcase unless article.summary.nil?
 
     keywords.each do |keyword|
-      return false if not match_arg.any? { |arg| arg.include?(keyword) }
+      return false unless match_arg.any? { |arg| arg.include?(keyword) }
     end
 
     # article matches the keywords
-    return true
+    true
   end
 
-  def self.calc_weight article, keywords
+  # Calculate the weight of the article based on the keywords
+  def self.calc_weight(article, keywords)
     weight = 0
 
     appearance_w = {
@@ -53,7 +56,6 @@ module SearchService
       end
     end
 
-    return weight
+    weight
   end
-
 end

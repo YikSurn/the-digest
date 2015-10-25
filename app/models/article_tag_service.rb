@@ -12,10 +12,10 @@ TAGGERS = [
   SourceTagger.new
 ]
 
+# Module to tag the articles
 module ArticleTagService
-
   # Add tags using the taggers in TAGGERS to each of the articles
-  def self.tag articles
+  def self.tag(articles)
     articles.each do |article|
       tags = []
       TAGGERS.each do |tagger|

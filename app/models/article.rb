@@ -1,3 +1,4 @@
+# Article model
 class Article < ActiveRecord::Base
   # Articles have tags
   acts_as_taggable

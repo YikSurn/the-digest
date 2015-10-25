@@ -30,7 +30,7 @@
   <%= @user.interest_list %>
 </p>
 
-<% if is_current_user? @user %>
+<% if current_user? @user %>
   <% if !@user.subscribed %>
     <%= button_to 'Subscribe to News Digest', [:toggle_subscribe, @user], :method => 'put' %>
   <% else %>

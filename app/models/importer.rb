@@ -1,6 +1,5 @@
-
+# Abstract class for the importers
 class ArticleImporter
-
   # A news scrape is initialised with the start and end date, it
   # then validates that the required methods are provided
   def initialize
@@ -16,5 +15,4 @@ class ArticleImporter
   # Method to be implemented in the subclasses
   def scrape
   end
-
 end

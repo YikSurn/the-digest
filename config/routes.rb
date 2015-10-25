@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # The unauthenticated path
   root 'sessions#unauth'
 

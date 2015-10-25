@@ -1,5 +1,5 @@
+# The controller for articles
 class ArticlesController < ApplicationController
-
   include SearchService
 
   before_action :set_article, only: [:show]
@@ -8,13 +8,14 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.paginate(:page => params[:page]).order(pub_date: :desc)
+    @articles = Article.paginate(page: params[:page]).order(pub_date: :desc)
   end
 
   # GET /articles/interests
   # GET /articles/interests.json
   def interests
-    @articles = Article.tagged_with(current_user.interest_list, :any => true).paginate(:page => params[:page]).order(pub_date: :desc)
+    @articles = Article.tagged_with(current_user.interest_list, any: true)
+                .paginate(page: params[:page]).order(pub_date: :desc)
     render 'index'
   end
 
@@ -23,16 +24,17 @@ class ArticlesController < ApplicationController
   def show
   end
 
+  # GET /articles/search
   def search
-    keywords = params[:keywords].split()
+    keywords = params[:keywords].split
     @articles = SearchService.search(keywords).paginate(page: params[:page])
     render 'index'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
 end

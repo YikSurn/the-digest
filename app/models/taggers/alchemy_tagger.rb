@@ -2,8 +2,8 @@ require_relative '../tagger.rb'
 
 require 'alchemy_api'
 
+# Tagger using alchemy gem
 class AlchemyTagger < ArticleTagger
-
   def initialize
     super
     AlchemyAPI.key = ENV['ALCHEMY_APIKEY']
@@ -11,7 +11,7 @@ class AlchemyTagger < ArticleTagger
     @concept_tagging = AlchemyAPI::ConceptTagging.new
   end
 
-  def get_tags article
+  def get_tags(article)
     text = article[:title] + ' ' + article[:summary].to_s
     tags = []
 
@@ -21,7 +21,6 @@ class AlchemyTagger < ArticleTagger
     entities.each { |e| tags << e['text'] if e['relevance'].to_f >= @MIN_SCORE }
     concepts.each { |c| tags << c['text'] if c['relevance'].to_f >= @MIN_SCORE }
 
-    return tags
+    tags
   end
-
 end

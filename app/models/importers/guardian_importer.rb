@@ -7,8 +7,7 @@ require 'cgi'
 
 # Data importer for The Guardian
 class GuardianImporter < ArticleImporter
-
-  def initialize url, source
+  def initialize(url, source)
     super()
     @url = url
     @source = source
@@ -30,17 +29,15 @@ class GuardianImporter < ArticleImporter
     article_list = data['results']
 
     article_list.each do |item|
-
       # Sanitize HTML
       item['title'] = CGI.unescapeHTML(item['webTitle'])
 
-      @articles.push({
+      @articles.push(
         title: item['title'],
         source: @source,
         url: item['webUrl'],
-        pub_date: item['webPublicationDate'],
-      })
+        pub_date: item['webPublicationDate']
+      )
     end
   end
-
 end

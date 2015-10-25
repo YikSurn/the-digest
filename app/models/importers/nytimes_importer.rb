@@ -7,8 +7,7 @@ require 'cgi'
 
 # Data importer for New York Times
 class NYTimesImporter < ArticleImporter
-
-  def initialize url, source
+  def initialize(url, source)
     super()
     @url = url
     @source = source
@@ -30,7 +29,6 @@ class NYTimesImporter < ArticleImporter
     article_list = data['results']
 
     article_list.each do |item|
-
       item['byline'].slice!('By ')
 
       # Get image
@@ -48,18 +46,17 @@ class NYTimesImporter < ArticleImporter
       item['title'] = CGI.unescapeHTML(item['title'])
       item['abstract'] = CGI.unescapeHTML(item['abstract'])
       item['byline'] = CGI.unescapeHTML(item['byline'])
-      item['byline'] = nil if item['byline'].nil? or item['byline'].empty?
+      item['byline'] = nil if item['byline'].nil? || item['byline'].empty?
 
-      @articles.push({
+      @articles.push(
         author: item['byline'],
         title: item['title'],
         summary: item['abstract'],
         image_url: image_url,
         source: @source,
         url: item['url'],
-        pub_date: item['published_date'],
-      })
+        pub_date: item['published_date']
+      )
     end
   end
-
 end

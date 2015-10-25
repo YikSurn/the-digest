@@ -6,8 +6,8 @@ require_relative 'importers/sbs_importer.rb'
 require_relative 'importers/nytimes_importer.rb'
 require_relative 'importers/guardian_importer.rb'
 
+# Module for scraping articles from sources
 module ArticleScrapeService
-
   # Update the articles with all the sources available in Source database
   def self.scrape
     importers = []
@@ -39,7 +39,6 @@ module ArticleScrapeService
 
     articles.uniq! { |h| h[:title] }
 
-    return articles
+    articles
   end
-
 end

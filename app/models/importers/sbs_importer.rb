@@ -7,8 +7,7 @@ require 'cgi'
 
 # Data importer for SBS news
 class SBSImporter < ArticleImporter
-
-  def initialize url, source
+  def initialize(url, source)
     super()
     @url = url
     @source = source
@@ -20,25 +19,23 @@ class SBSImporter < ArticleImporter
       feed = RSS::Parser.parse(rss)
 
       feed.items.each do |item|
-
         # Sanitize HTML
         item.title = CGI.unescapeHTML(item.title)
         item.description = CGI.unescapeHTML(item.description)
 
         item.author = CGI.unescapeHTML(item.dc_creator) if item.dc_creator
-        item.author = nil if item.author.nil? or item.author.empty?
+        item.author = nil if item.author.nil? || item.author.empty?
 
-        @articles.push({
+        @articles.push(
           title: item.title,
           author: item.author,
           summary: item.description,
           source: @source,
           url: item.link,
           pub_date: item.pubDate.to_s,
-          guid: item.guid.content,
-        })
+          guid: item.guid.content
+        )
       end
     end
   end
-
 end
